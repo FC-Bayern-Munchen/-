@@ -5,7 +5,10 @@ using namespace std;
 double getfilesize(char* filename);
 void getFiles( string, vector<string>& );
 void outsize(char * filename);
+void copy1(char * s1,char *s2,int n);
+void copy2(char * s1,char *s2,int a,int b);
 void filesort();
+void print();
 struct file{
 	char s1[50];//含路径的文件名
 	char s2[50];//文件名不含路径 
@@ -27,11 +30,11 @@ bool cmp(const file &a, const file &b){
 int size;
 int main()
 {
-	int len1,len2,j;
+	int len1,len2,j,point;
 	char * filePath;
 	char s[50];
 	cin>>s;	  //字符串s为文件夹的路径 C:\Users\86175\Desktop\文件夹
-	len1=strlen(s);//len为文件夹路径的字符串长度 
+	len1=strlen(s);//len1为文件夹路径的字符串长度 
 	filePath=s;
     vector<string> files;
 	getFiles(filePath,files);
@@ -40,36 +43,32 @@ int main()
 	for(int i=0;i<size;i++){ 
 		strcpy(f[i].s1,files[i].c_str());
 		len2=strlen(f[i].s1);
-		int k=0,m=0;
+		copy1(f[i].s2,f[i].s1,len1+1);
+		int k=0;
+		point=0;
 		if(f[i].s1[len1+1]=='.'){
 			f[i].s4[0]='.';
 			f[i].s4[1]='\0';
-			for(j=len1+1;f[i].s1[j]!='\0';j++){
-				f[i].s2[k++]=f[i].s1[j];
-			} 
 			strcpy(f[i].s3,f[i].s2);
 		}
 		else{
-			for(j=len1+1;(f[i].s1[j]!='.')&&(f[i].s1[j]!='\0');j++){
-				f[i].s2[k]=f[i].s1[j];
-				f[i].s3[k]=f[i].s1[j];
-				k++;
+			for(j=len1+1;(f[i].s1[j]!='\0');j++){
+				if(f[i].s1[j]=='.'){
+					point++;
+					copy1(f[i].s4,f[i].s1,j);
+					copy2(f[i].s3,f[i].s1,len1+1,j);
+				}
 			}
-			if(j>=len2){
+			if(point==0&&j>=len2){
 				f[i].s4[0]='.';
 				f[i].s4[1]='\0';
-			}
-			else{
-				f[i].s2[k++]='.';
-				while(f[i].s1[j]!='\0'){
-					f[i].s4[m++]=f[i].s1[j++];
-					f[i].s2[k++]=f[i].s1[j];
-				}
+				strcpy(f[i].s3,f[i].s2);
 			}
 		}
 	}
 	sort(f,f+size,cmp);
 	filesort();
+//	print();
 	return 0;
  } 
  void getFiles( string path, vector<string>& files )
@@ -123,6 +122,21 @@ void outsize(char * filename)		//将文件的大小按照要求转换并打印
 		printf("G");
 	}
 }
+void copy1(char * s1,char *s2,int n)
+{
+	int i=0,j=n;
+	while(s2[j]!=0){
+		s1[i++]=s2[j++];
+	}
+	s1[i]='\0';
+}
+void copy2(char * s1,char *s2,int a,int b)
+{
+	int k=0;
+	for(int i=a;i<b;i++)
+	s1[k++]=s2[i];
+	s1[k]='\0';
+}
 void filesort() //对文件按照扩展名排序输出 
 {
 	int i=0,k=0;
@@ -147,6 +161,16 @@ void filesort() //对文件按照扩展名排序输出
 		}
 	}
 }
+//void print()
+//{
+//	for(int i=0;i<size;i++){
+//		printf("%s\n",f[i].s1);
+//		printf("%s\n",f[i].s2);
+//		printf("%s\n",f[i].s3);
+//		printf("%s\n",f[i].s4);
+//		printf("\n");
+//	}
+//}
 
 
 
