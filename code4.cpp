@@ -5,15 +5,26 @@ using namespace std;
 double getfilesize(char* filename);
 void getFiles( string, vector<string>& );
 void outsize(char * filename);
-void print();
+void filesort();
 struct file{
 	char s1[50];//含路径的文件名
 	char s2[50];//文件名不含路径 
 	char s3[10];//文件名，不含路径和后缀名 
 	char s4[10];//扩展名 
 }f[30]; 
+bool cmp(const file &a, const file &b){
+//	if(a.s2 == b.s2) return a.s1<b.s1;
+//	else return a.s2 < b.s2;
+	if (strcmp(a.s4, b.s4) == 0){
+		if (strcmp(a.s3, b.s3) > 0) return 0;
+		else return 1;
+	}
+	else {
+		if (strcmp(a.s4, b.s4) > 0) return 0;
+		else return 1;
+	}
+}
 int size;
-
 int main()
 {
 	int len1,len2,j;
@@ -56,13 +67,10 @@ int main()
 				}
 			}
 		}
-		/*
-		cout<<f[i].s2<<' '<<getfilesize(f[i].s1)<<' ';
-		outsize(f[i].s1);
-		cout<<endl;
-		*/
 	}
-	print();
+	sort(f,f+size,cmp);
+	filesort();
+	return 0;
  } 
  void getFiles( string path, vector<string>& files )
 {
@@ -115,14 +123,37 @@ void outsize(char * filename)		//将文件的大小按照要求转换并打印
 		printf("G");
 	}
 }
-void print()
+void filesort() //对文件按照扩展名排序输出 
 {
-	for(int i=0;i<size;i++){
-		printf("%s\n",f[i].s1);
-		printf("%s\n",f[i].s2);
-		printf("%s\n",f[i].s3);
-		printf("%s\n",f[i].s4);
-		printf("\n");
+	int i=0,k=0;
+	char s[10];
+	strcpy(s,f[i].s4);
+	printf("%s\n",s);
+	for(i=0;i<size;i++){
+		if(strcmp(s,f[i].s4)==0){
+			printf("%s",f[i].s2);
+			printf(" ");
+			outsize(f[i].s1);
+			cout<<endl;
+		}
+		else{
+			strcpy(s,f[i].s4);
+			cout<<endl;
+			printf("%s\n",s);
+			printf("%s",f[i].s2);
+			printf(" ");
+			outsize(f[i].s1);
+			cout<<endl;
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
 
