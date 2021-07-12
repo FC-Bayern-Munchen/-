@@ -10,14 +10,12 @@ void copy2(char * s1,char *s2,int a,int b);
 void filesort();
 void print();
 struct file{
-	char s1[50];//含路径的文件名
-	char s2[50];//文件名不含路径 
-	char s3[10];//文件名，不含路径和后缀名 
-	char s4[10];//扩展名 
+	char s1[50];	//含路径的文件名
+	char s2[50];	//文件名不含路径 
+	char s3[10];	//文件名，不含路径和后缀名 
+	char s4[10];	//扩展名 
 }f[30]; 
 bool cmp(const file &a, const file &b){
-//	if(a.s2 == b.s2) return a.s1<b.s1;
-//	else return a.s2 < b.s2;
 	if (strcmp(a.s4, b.s4) == 0){
 		if (strcmp(a.s3, b.s3) > 0) return 0;
 		else return 1;
@@ -33,13 +31,13 @@ int main()
 	int len1,len2,j,point;
 	char * filePath;
 	char s[50];
-	cin>>s;	  //字符串s为文件夹的路径 C:\Users\86175\Desktop\文件夹
-	len1=strlen(s);//len1为文件夹路径的字符串长度 
+	cin>>s;	  	//字符串s为文件夹的路径 	C:\Users\86175\Desktop\文件夹
+	len1=strlen(s);		//len1为文件夹路径的字符串长度 
 	filePath=s;
     vector<string> files;
 	getFiles(filePath,files);
 	char str[50];
-	size = files.size();	//size为文件个数   files[i].c_str()为文件夹内文件路径 
+	size = files.size();		//size为文件个数   files[i].c_str()为文件夹内文件路径 
 	for(int i=0;i<size;i++){ 
 		strcpy(f[i].s1,files[i].c_str());
 		len2=strlen(f[i].s1);
