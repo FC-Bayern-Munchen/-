@@ -10,11 +10,11 @@ void copy2(char * s1,char *s2,int a,int b);
 void filesort();
 void print();
 struct file{
-	char s1[50];	//º¬Â·¾¶µÄÎÄ¼şÃû
-	char s2[50];	//ÎÄ¼şÃû²»º¬Â·¾¶ 
-	char s3[10];	//ÎÄ¼şÃû£¬²»º¬Â·¾¶ºÍºó×ºÃû 
-	char s4[10];	//À©Õ¹Ãû 
-}f[30]; 
+	char s1[50];	//å«è·¯å¾„çš„æ–‡ä»¶å
+	char s2[50];	//æ–‡ä»¶åä¸å«è·¯å¾„
+	char s3[10];	//æ–‡ä»¶åï¼Œä¸å«è·¯å¾„å’Œåç¼€å
+	char s4[10];	//æ‰©å±•å
+}f[30];
 bool cmp(const file &a, const file &b){
 	if (strcmp(a.s4, b.s4) == 0){
 		if (strcmp(a.s3, b.s3) > 0) return 0;
@@ -31,14 +31,14 @@ int main()
 	int len1,len2,j,point;
 	char * filePath;
 	char s[50];
-	cin>>s;	  	//×Ö·û´®sÎªÎÄ¼ş¼ĞµÄÂ·¾¶ 	C:\Users\86175\Desktop\ÎÄ¼ş¼Ğ
-	len1=strlen(s);		//len1ÎªÎÄ¼ş¼ĞÂ·¾¶µÄ×Ö·û´®³¤¶È 
+	cin>>s;	  	//å­—ç¬¦ä¸²sä¸ºæ–‡ä»¶å¤¹çš„è·¯å¾„ 	C:\Users\86175\Desktop\æ–‡ä»¶å¤¹
+	len1=strlen(s);		//len1ä¸ºæ–‡ä»¶å¤¹è·¯å¾„çš„å­—ç¬¦ä¸²é•¿åº¦
 	filePath=s;
     vector<string> files;
 	getFiles(filePath,files);
 	char str[50];
-	size = files.size();		//sizeÎªÎÄ¼ş¸öÊı   files[i].c_str()ÎªÎÄ¼ş¼ĞÄÚÎÄ¼şÂ·¾¶ 
-	for(int i=0;i<size;i++){ 
+	size = files.size();		//sizeä¸ºæ–‡ä»¶ä¸ªæ•°   files[i].c_str()ä¸ºæ–‡ä»¶å¤¹å†…æ–‡ä»¶è·¯å¾„
+	for(int i=0;i<size;i++){
 		strcpy(f[i].s1,files[i].c_str());
 		len2=strlen(f[i].s1);
 		copy1(f[i].s2,f[i].s1,len1+1);
@@ -68,7 +68,7 @@ int main()
 	filesort();
 //	print();
 	return 0;
- } 
+ }
  void getFiles( string path, vector<string>& files )
 {
    long  hFile=0;
@@ -89,7 +89,7 @@ int main()
        _findclose(hFile);
     }
 }
-double getfilesize(char* filename)  	//¼ÆËãÎÄ¼şµÄ×Ö½ÚÊı´óĞ¡ 
+double getfilesize(char* filename)  	//è®¡ç®—æ–‡ä»¶çš„å­—èŠ‚æ•°å¤§å°
 {
     FILE *fp;
     if((fp=fopen(filename,"r"))==NULL)
@@ -97,7 +97,7 @@ double getfilesize(char* filename)  	//¼ÆËãÎÄ¼şµÄ×Ö½ÚÊı´óĞ¡
     fseek(fp,0,SEEK_END);
     return ftell(fp);
 }
-void outsize(char * filename)		//½«ÎÄ¼şµÄ´óĞ¡°´ÕÕÒªÇó×ª»»²¢´òÓ¡ 
+void outsize(char * filename)		//å°†æ–‡ä»¶çš„å¤§å°æŒ‰ç…§è¦æ±‚è½¬æ¢å¹¶æ‰“å°
 {
 	double len;
 	len=getfilesize(filename);
@@ -135,7 +135,7 @@ void copy2(char * s1,char *s2,int a,int b)
 	s1[k++]=s2[i];
 	s1[k]='\0';
 }
-void filesort() //¶ÔÎÄ¼ş°´ÕÕÀ©Õ¹ÃûÅÅĞòÊä³ö 
+void filesort() //å¯¹æ–‡ä»¶æŒ‰ç…§æ‰©å±•åæ’åºè¾“å‡º
 {
 	int i=0,k=0;
 	char s[10];
