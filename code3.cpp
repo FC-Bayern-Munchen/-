@@ -108,7 +108,7 @@ void hefiles()	//将文件打包为一个二进制文件
 	for(i=0;i<size;i++){	//以ab的方式将文件中的内容复制到二进制文件结尾
 		copyfile(i,f[i].s1);
 	}
-	cout<<"文件打包成功"<<endl;
+	cout<<"The file was packaged successfully"<<endl;
 //	cout<<"合成文件路径为:"<<"C:\\Users\\86175\\Desktop\\文件夹\\newfile.bin"<<endl;
 }
 
@@ -119,7 +119,7 @@ void fenfiles()		//将二进制结构文件复原为原文件
 	FILE *fp2;
 	if (!fp1)
 	{
-		puts("文件打开失败！");
+		puts("error");
 		exit(0);
 	}
 	fread((char *)&x,4,1,fp1);
@@ -149,7 +149,7 @@ void fenfiles()		//将二进制结构文件复原为原文件
 		}
 		fclose(fp2);
 	}
-	cout<<"文件复原成功"<<endl;
+	cout<<"File recovery succeeded"<<endl;
 //	cout<<"复原文件所在文件夹为:"<<"C:\\Users\\86175\\Desktop\\文件夹\\newfolder"<<endl;
 }
 
@@ -159,12 +159,12 @@ void copyfile(int x,char *filename)		//将一个文件夹的内容复制到二�
 	FILE* fp2 = fopen("C:\\Users\\86175\\Desktop\\文件夹\\newfile.bin","ab");
 	if (!fp1)
 	{
-		puts("文件打开失败！");
+		puts("error");
 		exit(0);
 	}
 	if (!fp2)
 	{
-		puts("文件打开失败！");
+		puts("error");
 		exit(0);
 	}
 	fputs(f[x].s2,fp2);
