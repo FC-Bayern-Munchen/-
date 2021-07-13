@@ -8,7 +8,6 @@ void outsize(char * filename);
 void copy1(char * s1,char *s2,int n);
 void copy2(char * s1,char *s2,int a,int b);
 void filesort();
-void print();
 struct file{
 	char s1[50];	//含路径的文件名
 	char s2[50];	//文件名不含路径
@@ -66,7 +65,6 @@ int main()
 	}
 	sort(f,f+size,cmp);
 	filesort();
-//	print();
 	return 0;
  }
  void getFiles( string path, vector<string>& files )
@@ -159,16 +157,6 @@ void filesort() //对文件按照扩展名排序输出
 		}
 	}
 }
-//void print()
-//{
-//	for(int i=0;i<size;i++){
-//		printf("%s\n",f[i].s1);
-//		printf("%s\n",f[i].s2);
-//		printf("%s\n",f[i].s3);
-//		printf("%s\n",f[i].s4);
-//		printf("\n");
-//	}
-//}
 
 
 
