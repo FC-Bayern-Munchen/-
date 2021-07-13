@@ -11,45 +11,45 @@ void hefiles();
 void fenfiles();
 void copyfile(int x,char *filename);
 
-struct file{	 
-	char s1[50];//º¬Â·¾¶µÄÎÄ¼şÃû
-	char s2[10];//²»º¬Â·¾¶µÄÎÄ¼şÃû 
-	int namesize;//ÎÄ¼şÃûµÄ³¤¶È 
-	int fsize;//ÎÄ¼şÄÚÈİµÄ×Ö½ÚÊı 
+struct file{
+	char s1[50];//å«è·¯å¾„çš„æ–‡ä»¶å
+	char s2[10];//ä¸å«è·¯å¾„çš„æ–‡ä»¶å
+	int namesize;//æ–‡ä»¶åçš„é•¿åº¦
+	int fsize;//æ–‡ä»¶å†…å®¹çš„å­—èŠ‚æ•°
 }f[30];
 
 struct data{
-	char s[50];	//½â°üÎÄ¼ş¼ĞÖĞÎÄ¼şµÄÂ·¾¶ 
-	int a;		//¶ÁÈ¡µÄÎÄ¼şÃû³¤¶È 
-	int b;		//¶ÁÈ¡µÄÎÄ¼şµÄ×Ö½ÚÊı 
+	char s[50];	//è§£åŒ…æ–‡ä»¶å¤¹ä¸­æ–‡ä»¶çš„è·¯å¾„
+	int a;		//è¯»å–çš„æ–‡ä»¶åé•¿åº¦
+	int b;		//è¯»å–çš„æ–‡ä»¶çš„å­—èŠ‚æ•°
 }d[30];
 
 int size,x;
 int len;
 long long sum=0;
-char * filePath1="C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\folder";
-//Òª´ò°üÎÄ¼şËùÔÚµÄÎÄ¼ş¼Ğ 
-char * filePath2="C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfolder\\";
-//½âÑ¹ºóÎÄ¼şËùÔÚµÄÂ·¾¶ 
+char * filePath1="C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\folder";
+//è¦æ‰“åŒ…æ–‡ä»¶æ‰€åœ¨çš„æ–‡ä»¶å¤¹
+char * filePath2="C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfolder\\";
+//è§£å‹åæ–‡ä»¶æ‰€åœ¨çš„è·¯å¾„
 
 int main()
 {
     vector<string> files;
 	getFiles(filePath1,files);
 	char str[50];
-	size = files.size();	//ÎÄ¼ş¼ĞÖĞÎÄ¼şµÄ¸öÊı 
-	len=strlen(filePath1);//ÒªºÏ²¢µÄÎÄ¼ş¼ĞµÄÂ·¾¶³¤¶È 
+	size = files.size();	//æ–‡ä»¶å¤¹ä¸­æ–‡ä»¶çš„ä¸ªæ•°
+	len=strlen(filePath1);//è¦åˆå¹¶çš„æ–‡ä»¶å¤¹çš„è·¯å¾„é•¿åº¦
 	for(int i=0;i<size;i++){
 		strcpy(f[i].s1,files[i].c_str());
 		copy1(f[i].s2,f[i].s1,len+1);
 		f[i].namesize=strlen(f[i].s2);
 		f[i].fsize=getfilesize(f[i].s1);
-	}	//½«ÎÄ¼şµÄÊı¾İ´æÈë½á¹¹ÌåÊı×é 
-	hefiles();	//ºÏ²¢ÎÄ¼ş 
-	fenfiles();	//½â°üÎÄ¼ş 
+	}	//å°†æ–‡ä»¶çš„æ•°æ®å­˜å…¥ç»“æ„ä½“æ•°ç»„
+	hefiles();	//åˆå¹¶æ–‡ä»¶
+	fenfiles();	//è§£åŒ…æ–‡ä»¶
 }
 
-void getFiles( string path, vector<string>& files )	//»ñÈ¡ÎÄ¼ş¼ĞÖĞËùÓĞÎÄ¼şÃû 
+void getFiles( string path, vector<string>& files )	//è·å–æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰æ–‡ä»¶å
 {
    long  hFile=0;
     struct _finddata_t fileinfo;
@@ -70,7 +70,7 @@ void getFiles( string path, vector<string>& files )	//»ñÈ¡ÎÄ¼ş¼ĞÖĞËùÓĞÎÄ¼şÃû
     }
 }
 
-int getfilesize(char* filename)  	//¼ÆËãÎÄ¼şµÄ×Ö½ÚÊı´óĞ¡ 
+int getfilesize(char* filename)  	//è®¡ç®—æ–‡ä»¶çš„å­—èŠ‚æ•°å¤§å°
 {
     FILE *fp;
     if((fp=fopen(filename,"r"))==NULL)
@@ -80,7 +80,7 @@ int getfilesize(char* filename)  	//¼ÆËãÎÄ¼şµÄ×Ö½ÚÊı´óĞ¡
     fclose(fp);
 }
 
-void copy1(char * s1,char *s2,int n)	//½«×Ö·û´®s2µÚn¸ö×Ö·ûºóµÄ×Ö·ûÄÚÈİ¸´ÖÆ¸ø×Ö·û´®s1 
+void copy1(char * s1,char *s2,int n)	//å°†å­—ç¬¦ä¸²s2ç¬¬nä¸ªå­—ç¬¦åçš„å­—ç¬¦å†…å®¹å¤åˆ¶ç»™å­—ç¬¦ä¸²s1
 {
 	int i=0,j=n;
 	while(s2[j]!=0){
@@ -89,41 +89,41 @@ void copy1(char * s1,char *s2,int n)	//½«×Ö·û´®s2µÚn¸ö×Ö·ûºóµÄ×Ö·ûÄÚÈİ¸´ÖÆ¸ø×Ö·û
 	s1[i]='\0';
 }
 
-void hefiles()	//½«ÎÄ¼ş´ò°üÎªÒ»¸ö¶ş½øÖÆÎÄ¼ş 
+void hefiles()	//å°†æ–‡ä»¶æ‰“åŒ…ä¸ºä¸€ä¸ªäºŒè¿›åˆ¶æ–‡ä»¶
 {
 	FILE *fp1;
 	int i;
 	char c;
-	fp1=fopen("C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfile.bin","wb");
+	fp1=fopen("C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfile.bin","wb");
 	if(fp1==NULL){
 		printf("error1");
 		exit(0);
 	}
-	fwrite((char *)&size,4,1,fp1);	//½«intĞÍĞ´Èë¶ş½øÖÆÎÄ¼şÖĞ 
+	fwrite((char *)&size,4,1,fp1);	//å°†intå‹å†™å…¥äºŒè¿›åˆ¶æ–‡ä»¶ä¸­
 	for(i=0;i<size;i++){
 		fwrite((char *)&f[i].namesize,4,1,fp1);
 		fwrite((char *)&f[i].fsize,4,1,fp1);
 	}
 	fclose(fp1);
-	for(i=0;i<size;i++){	//ÒÔabµÄ·½Ê½½«ÎÄ¼şÖĞµÄÄÚÈİ¸´ÖÆµ½¶ş½øÖÆÎÄ¼ş½áÎ² 
+	for(i=0;i<size;i++){	//ä»¥abçš„æ–¹å¼å°†æ–‡ä»¶ä¸­çš„å†…å®¹å¤åˆ¶åˆ°äºŒè¿›åˆ¶æ–‡ä»¶ç»“å°¾
 		copyfile(i,f[i].s1);
 	}
-	cout<<"ÎÄ¼ş´ò°ü³É¹¦"<<endl;
-//	cout<<"ºÏ³ÉÎÄ¼şÂ·¾¶Îª:"<<"C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfile.bin"<<endl;
+	cout<<"æ–‡ä»¶æ‰“åŒ…æˆåŠŸ"<<endl;
+//	cout<<"åˆæˆæ–‡ä»¶è·¯å¾„ä¸º:"<<"C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfile.bin"<<endl;
 }
 
-void fenfiles()		//½«¶ş½øÖÆ½á¹¹ÎÄ¼ş¸´Ô­ÎªÔ­ÎÄ¼ş 
+void fenfiles()		//å°†äºŒè¿›åˆ¶ç»“æ„æ–‡ä»¶å¤åŸä¸ºåŸæ–‡ä»¶
 {
-	
-	FILE *fp1=fopen("C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfile.bin","r");
+
+	FILE *fp1=fopen("C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfile.bin","r");
 	FILE *fp2;
 	if (!fp1)
 	{
-		puts("ÎÄ¼ş´ò¿ªÊ§°Ü£¡");
+		puts("æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼");
 		exit(0);
 	}
 	fread((char *)&x,4,1,fp1);
-	sum+=4;		//sumÎª¼ÇÂ¼Ö¸ÕëÒÆ¶¯ 
+	sum+=4;		//sumä¸ºè®°å½•æŒ‡é’ˆç§»åŠ¨
 	for(int i=0;i<x;i++){
 		fread((char *)&d[i].a,4,1,fp1);
 		fread((char *)&d[i].b,4,1,fp1);
@@ -136,11 +136,11 @@ void fenfiles()		//½«¶ş½øÖÆ½á¹¹ÎÄ¼ş¸´Ô­ÎªÔ­ÎÄ¼ş
 		for(int j=0;j<d[i].a;j++){
 			fread(&ch,1,1,fp1);
 			str[j]=ch;
-		}	//str´¢´æÎÄ¼şÃû 
+		}	//strå‚¨å­˜æ–‡ä»¶å
 		str[d[i].a]='\0';
 		sum+=d[i].a;
 		strcpy(d[i].s,filePath2);
-		strcat(d[i].s,str);	//º¬ÎÄ¼şÂ·¾¶µÄÎÄ¼şÃû	
+		strcat(d[i].s,str);	//å«æ–‡ä»¶è·¯å¾„çš„æ–‡ä»¶å
 		fp2=fopen(d[i].s,"wb");
 		for(int j=0;j<d[i].b;j++){
 			fread(&ch,1,1,fp1);
@@ -149,22 +149,22 @@ void fenfiles()		//½«¶ş½øÖÆ½á¹¹ÎÄ¼ş¸´Ô­ÎªÔ­ÎÄ¼ş
 		}
 		fclose(fp2);
 	}
-	cout<<"ÎÄ¼ş¸´Ô­³É¹¦"<<endl; 
-//	cout<<"¸´Ô­ÎÄ¼şËùÔÚÎÄ¼ş¼ĞÎª:"<<"C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfolder"<<endl;
+	cout<<"æ–‡ä»¶å¤åŸæˆåŠŸ"<<endl;
+//	cout<<"å¤åŸæ–‡ä»¶æ‰€åœ¨æ–‡ä»¶å¤¹ä¸º:"<<"C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfolder"<<endl;
 }
 
-void copyfile(int x,char *filename)		//½«Ò»¸öÎÄ¼ş¼ĞµÄÄÚÈİ¸´ÖÆµ½¶ş½øÖÆ½á¹¹ÎÄ¼şÖĞ 
+void copyfile(int x,char *filename)		//å°†ä¸€ä¸ªæ–‡ä»¶å¤¹çš„å†…å®¹å¤åˆ¶åˆ°äºŒè¿›åˆ¶ç»“æ„æ–‡ä»¶ä¸­
 {
 	FILE* fp1 = fopen(filename, "rb");
-	FILE* fp2 = fopen("C:\\Users\\86175\\Desktop\\ÎÄ¼ş¼Ğ\\newfile.bin","ab");
+	FILE* fp2 = fopen("C:\\Users\\86175\\Desktop\\æ–‡ä»¶å¤¹\\newfile.bin","ab");
 	if (!fp1)
 	{
-		puts("ÎÄ¼ş´ò¿ªÊ§°Ü£¡");
+		puts("æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼");
 		exit(0);
 	}
 	if (!fp2)
 	{
-		puts("ÎÄ¼ş´ò¿ªÊ§°Ü£¡");
+		puts("æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼");
 		exit(0);
 	}
 	fputs(f[x].s2,fp2);
